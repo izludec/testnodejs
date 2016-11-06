@@ -39,6 +39,6 @@ var moment= require("moment")
         res.end(JSON.stringify({ "unix": null, "natural": null }))
       }
     })
-    server.listen(8080,function(){
+    server.listen(process.env.PORT || 8080,function(){
       console.log("Started 8080")
     })
