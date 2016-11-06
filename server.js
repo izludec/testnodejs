@@ -28,14 +28,14 @@ var moment= require("moment")
      
         result_time = parsetime(time)
         result_unix = unixtime(time)
-        console.log(result_time)
+        
 
       if (result_time && result_unix) {
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ "unix": result_unix/1000, "natural": result_time }))
       } else {
-        res.writeHead(404)
-        res.end()
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ "unix": null, "natural": null }))
       }
     })
     server.listen(8080,function(){
