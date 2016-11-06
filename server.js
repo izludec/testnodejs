@@ -16,19 +16,20 @@ var moment= require("moment")
       var parsedUrl = url.parse(req.url, true)
       var time
       var reg = new RegExp("%20", 'g')
+      if(!parsedUrl.pathname.match("/")){
       if(parsedUrl.pathname.replace("/","")[0].match(/\D/)){
         time = new Date(parsedUrl.pathname.replace("/","").replace(reg," "))
       }
       else{
       time = new Date(parsedUrl.pathname.replace("/","")*1000)
-      }
+      }}
       var result_time
       var result_unix
-
-     
+      
+      if (time){
         result_time = parsetime(time)
         result_unix = unixtime(time)
-        
+      }
 
       if (result_time && result_unix) {
         res.writeHead(200, { 'Content-Type': 'application/json' })
